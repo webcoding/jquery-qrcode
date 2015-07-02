@@ -2,22 +2,35 @@
 <html>
 <head>
 <title>Demo page</title>
-
+<style>
+    *{margin:10px;}
+</style>
 </head>
 <body>
 <p>
 	TODO make a nice looking pure client qrcode generator
 	even allow download of the image
 </p>
-
+<input type="text" id="getval"/> <button id="send">点击更换验证码</button>
 <div id="output"></div>
-
 <script src="http://pic.lvmama.com/js/new_v/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="../jquery.qrcode.min.js"></script>
 <script>
 jQuery(function(){
-	jQuery('#output').qrcode("test+13812341234");
-})
+    var outputBox = $('#output');
+	outputBox.qrcode({
+        text: 'test+13812341234',
+        width: 96,
+        height: 96
+    });
+    document.getElementById("send").onclick =function(){
+        outputBox.qrcode({
+            text: document.getElementById("getval").value,
+        width: 96,
+        height: 96
+        })
+    }
+});
 </script>
 
 </body>
